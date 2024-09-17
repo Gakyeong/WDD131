@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    font-size:  20px;
+    
+}
+/* vh : veiwport height, selector {property : value;}, id - only one #, class- group . , attributes, */
+main{
+    /* background-color:  red; */
+    border: 4px solid ;
+    height:  100vh; 
+}
+.green{
+    color :green;
+}
+/* complexed sector , em:relative unit */
+footer p {
+    font-size: .8em;
+}
