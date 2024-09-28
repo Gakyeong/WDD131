@@ -94,6 +94,7 @@ button.close-viewer{
 }
 .viewer img{
     max-height:100%;
+    max-width: 80%;
     align-self: center;
     justify-self: center;
     grid-row: 2;
