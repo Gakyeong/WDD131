@@ -42,7 +42,7 @@ img {
     border: 5px solid white;
     box-shadow: 5px 5px rgb(97, 94, 94);
 }
-h3, p{
+h2, p{
     margin: 0 auto;
     padding: 1.2em;
 }
@@ -100,7 +100,9 @@ button.close-viewer{
     grid-row: 2;
     padding: 2em;
 }
-
+footer p{
+    color:rgb(255, 255, 255);
+}
 @media screen and (min-width: 700px){
     .gallery{
         grid-template-columns: 1fr 1fr;
