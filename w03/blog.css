@@ -65,7 +65,7 @@ main{
     font-family: var(--primary-font);
     border-right: 2px solid var(--secondary-color);
     margin-top: 2em;
-    margin-bottom: 200%;
+    margin-bottom: 500px;
 }
 
 .Published_info p{
