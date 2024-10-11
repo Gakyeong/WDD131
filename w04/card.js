@@ -43,4 +43,4 @@ function submitHandler(event) {
 	return true;
 }
 
-document.querySelector('#cardinfront').addEventListener('submit', submitHandler);
+document.querySelector('#card-info').addEventListener('click', submitHandler);
