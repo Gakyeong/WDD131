@@ -293,8 +293,9 @@ function passArray(list){
 console.log(passArray(recipes));
 
 function recipeTemplate(recipe) {
-	return `<img class= 'recipe-img' src = '${recipe.image}'>
-        <div class="block1">
+	return `
+		<div class="block1">
+			<img class= 'recipe-img' src = '${recipe.image}'>
             <div class="tags">
                 <span class="tag">Waffles</span>
                 <span class="tag">Sweet Potato</span>
@@ -363,3 +364,21 @@ function ratingTemplate(rating) {
 
 const recipe = passArray(recipes);
 console.log(recipeTemplate(recipe));
+
+function renderRecipes(recipeList) {
+	// get the element we will output the recipes into
+	const listElement = document.querySelector('block1');
+	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
+	const html = recipeList.map(recipeTemplate);
+	// Set the HTML strings as the innerHTML of our output element.
+	console.log(html);
+	listElement.innerHTML = html.join('');
+}
+
+function init() {
+  // get a random recipe
+  const recipe = passArray(recipes)
+  // render the recipe with renderRecipes.
+  renderRecipes([recipe]);
+}
+init();
