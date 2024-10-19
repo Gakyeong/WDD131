@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+:root {
+    --primary-color: #1B98E0;
+    --secondary-color: #59c3c3;
+    --text-dark: #333;
+    --text-light: #ebebeb;
+    --primary-font: Amatic SC, Arial, Helvetica,sans-serif;
+    --secondary-font: "Amatic SC";
+    }
+/* header */
+header{
+    display: flex;
+    flex-wrap: wrap;
+}
+img {
+    max-width: 100%;
+}
+img.logo{
+    height: 100px;
+    justify-content: center;
+}
+#searchbar{
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+    margin: 10px;
+}
+#search{
+    width: 80%;
+    margin-right: 20px;
+}
+h1{
+    justify-content:space-evenly;
+    font-family: var(--primary-font);
+    font-size: 3em;
+    margin: 20px auto;
+}
+/* tags */
+main{
+    border: 1PX solid gray;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.name{
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+    font-size: 2em;
+    text-align: center;
+}
+.rating{
+    display: flex; 
+    justify-content: center; 
+    margin: 20px 0;
+    /* align center */
+}
+
+.tag{
+    display: inline-block; 
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+/* footer */
+footer{
+    justify-content: center;
+    text-align: center;
+}
+
+/* media query:600 */
+@media screen and (min-width: 600px) {
+    main{
+        display: flex; 
+        flex-direction: row; 
+    }
+    .recipe-img{
+        width: 50%;
+    }
+    .block1{
+        margin: 20px;
+    }
+    footer{
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        padding: 20px;
+    }
+    footer img{
+        width: 50px;
+    }
+}
+@media screen and (min-width: 960px) {
+    main{
+        display: flex; 
+        flex-direction: row; 
+    }
+    .recipe-img{
+        width: 50%;
+    }
+    .block1{
+        margin: 20px;
+    }
+    footer{
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        padding: 20px;
+    }
+    footer img{
+        width: 50px;
+    }
+}
+
