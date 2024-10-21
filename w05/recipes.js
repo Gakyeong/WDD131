@@ -359,7 +359,11 @@ function renderRecipes(recipeList) {
 	const taghtml1 = recipeList.map(tagsTemplate);
 	const ratinghtml1 = recipeList.map(ratingTemplate);
 	// Set the HTML strings as the innerHTML of our output element.
-	return listElement.innerHTML = recipehtml1.join('').taghtml1.join('').ratinghtml1.join('');
+
+	const combinedHtml = recipehtml1 + taghtml1 + ratinghtml1;
+
+	listElement.innerHTML = combinedHtml;
+	
 }
 // console.log(renderRecipes(recipes));
 
@@ -372,27 +376,27 @@ function init() {
 init();
 
 // filtering ??? 
-// function filter(query) {
-// 	const filtered = recipes.filter(filterRecipes(query));
-// 	// sort by name
-// 	const sorted = filtered.sort(sortFunction);
-// 		return sorted;
+function filter(query) {
+	const filtered = recipes.filter(filterRecipes(query));
+	// sort by name	
+	const sorted = filtered.sort(sortFunction);
+		return sorted;
 
-// }
-// function searchHandler(e) {
-// 	e.preventDefault();
-// 	// get the search input
-// 	const input = document.querySelector('#search').value.toLowerCase();
-//   // convert the value in the input to lowercase
+}
+function searchHandler(e) {
+	e.preventDefault();
+	// get the search input
+	const input = document.querySelector('#search').value.toLowerCase();
+  // convert the value in the input to lowercase
 
-//   // use the filter function to filter our recipes
-// 	function filterRecipes(object){
-// 		(object.tags.find((tag) => tag.toLowerCase().includes(e.toLowerCase())) || 
-// 		object.description.toLowerCase().includes(e.toLowerCase()) || 
-// 		object.name.toLowerCase().includes(e.toLowerCase())) ||
-// 		object.recipeIngredient.find((ingredient) => ingredient.toLowerCase().includes(e.toLowerCase()));
-// 	}
-// 	return e.filter(filterRecipes);
-//   // render the filtered list
-// }
-// document.querySelector('#search').addEventListener('click', searchHandler);
+  // use the filter function to filter our recipes
+	function filterRecipes(object){
+		(object.tags.find((tag) => tag.toLowerCase().includes(e.toLowerCase())) || 
+		object.description.toLowerCase().includes(e.toLowerCase()) || 
+		object.name.toLowerCase().includes(e.toLowerCase())) ||
+		object.recipeIngredient.find((ingredient) => ingredient.toLowerCase().includes(e.toLowerCase()));
+	}
+	return e.filter(filterRecipes);
+  // render the filtered list
+}
+document.querySelector('#search').addEventListener('click', searchHandler);
