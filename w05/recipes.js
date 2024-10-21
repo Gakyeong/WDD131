@@ -355,11 +355,13 @@ function renderRecipes(recipeList) {
 	// get the element we will output the recipes into
 	const listElement = document.querySelector('.block1');
 	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-	const allhtml = recipeList.map(recipeTemplate);
+	const recipehtml1 = recipeList.map(recipeTemplate);
+	const taghtml1 = recipeList.map(tagsTemplate);
+	const ratinghtml1 = recipeList.map(ratingTemplate);
 	// Set the HTML strings as the innerHTML of our output element.
-	return listElement.innerHTML = allhtml.join('');
+	return listElement.innerHTML = recipehtml1.join('').taghtml1.join('').ratinghtml1.join('');
 }
-console.log(renderRecipes(recipes));
+// console.log(renderRecipes(recipes));
 
 function init() {
   // get a random recipe
