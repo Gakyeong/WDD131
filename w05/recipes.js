@@ -303,7 +303,7 @@ function recipeTemplate(recipe) {
             </div>
             <h2 class="name">${recipe.name}</h2>
         
-            <span class="rating" role="img" aria-label="Rating: 4 out of 5 stars">
+            <span class="rating" role="img" aria-label="Rating: ${recipe.rating} out of 5 stars">
                 <span aria-hidden="true" class="icon-star">⭐</span>
                 <span aria-hidden="true" class="icon-star">⭐</span>
                 <span aria-hidden="true" class="icon-star">⭐</span>
@@ -312,44 +312,33 @@ function recipeTemplate(recipe) {
             </span>
             <div class="explanation">
                 <p class="description">${recipe.description}</p>
-                <ul class="ingredient">
-                    <li>2 separated eggs</li>
-                    <li>1/4 C Oil</li>
-                    <li>1/4 tsp salt</li>
-                </ul>
-                
-                <ul class="instruction">
-                    <li>Add the egg yolks, oil, salt, cayenne, sugar, ginger, shallots, sweet potatoes (steam and mash before), and milk and mix well.</li>
-                    <li>Next add the cornmeal, chives, and flour and baking powder</li>
-                    <li>Whip the egg whites until stiff and fold in</li>
-                    <li>Cook until golden brown in a waffle iron. Serve with butter and Wilted Greens or Honey.</li>
-                </ul>
             </div>
         </div>  `;
 }
 function tagsTemplate(recipe) {
+	let tagshtml = '';
 	// loop through the tags list and transform the strings to HTML????
-	let tagshtml =`<span class="tag">${recipe.rating}</span>`;
-	tagshtml += tags.recipe;
+	recipe.tags.forEach(tag => {
+		tagshtml += `<span class="tag">${tag}</span>`
+	});
+	return tagshtml
 	}
 	
-
 function ratingTemplate(rating) {
 	// begin building an html string using the ratings HTML written earlier as a model.
-	let html = `<span
-	class="rating"
-	role="img"
-	aria-label="Rating: ${rating} out of 5 stars">`;
+	let html = '';
 // our ratings are always out of 5, so create a for loop from 1 to 5
 	const number = randomN(rating);
 		// check to see if the current index of the loop is less than our rating
 		// if so then output a filled star
-		if(number <6){
-			html += `<span aria-hidden="true" class="icon-star">⭐</span>`
-		}
-		// else output an empty star
-		else{
-			html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`
+		for (let number = 1; number <= 5; number++){
+			if(number <6){
+				html += `<span aria-hidden="true" class="icon-star">⭐</span>`
+			}
+			// else output an empty star
+			else{
+				html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`
+			}
 		}
 	// after the loop, add the closing tag to our string
 	html += `</span>`;
@@ -359,16 +348,18 @@ function ratingTemplate(rating) {
 
 const recipe = passArray(recipes);
 console.log(recipeTemplate(recipe));
+console.log(tagsTemplate(recipe));
+console.log(ratingTemplate(recipe));
 
 function renderRecipes(recipeList) {
 	// get the element we will output the recipes into
 	const listElement = document.querySelector('.block1');
 	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-	const html = recipeList.map(recipeTemplate);
+	const allhtml = recipeList.map(recipeTemplate);
 	// Set the HTML strings as the innerHTML of our output element.
-	console.log(html);
-	listElement.innerHTML = html.join('');
+	return listElement.innerHTML = allhtml.join('');
 }
+console.log(renderRecipes(recipes));
 
 function init() {
   // get a random recipe
@@ -379,27 +370,27 @@ function init() {
 init();
 
 // filtering ??? 
-function filter(query) {
-	const filtered = recipes.filter(filterRecipes(query));
-	// sort by name
-	const sorted = filtered.sort(sortFunction);
-		return sorted;
+// function filter(query) {
+// 	const filtered = recipes.filter(filterRecipes(query));
+// 	// sort by name
+// 	const sorted = filtered.sort(sortFunction);
+// 		return sorted;
 
-}
-function searchHandler(e) {
-	e.preventDefault();
-	// get the search input
-	const input = document.querySelector('#search').value.toLowerCase();
-  // convert the value in the input to lowercase
+// }
+// function searchHandler(e) {
+// 	e.preventDefault();
+// 	// get the search input
+// 	const input = document.querySelector('#search').value.toLowerCase();
+//   // convert the value in the input to lowercase
 
-  // use the filter function to filter our recipes
-	function filterRecipes(object){
-		(object.tags.find((tag) => tag.toLowerCase().includes(e.toLowerCase())) || 
-		object.description.toLowerCase().includes(e.toLowerCase()) || 
-		object.name.toLowerCase().includes(e.toLowerCase())) ||
-		object.recipeIngredient.find((ingredient) => ingredient.toLowerCase().includes(e.toLowerCase()));
-	}
-	return e.filter(filterRecipes);
-  // render the filtered list
-}
-document.querySelector('#search').addEventListener('click', searchHandler);
+//   // use the filter function to filter our recipes
+// 	function filterRecipes(object){
+// 		(object.tags.find((tag) => tag.toLowerCase().includes(e.toLowerCase())) || 
+// 		object.description.toLowerCase().includes(e.toLowerCase()) || 
+// 		object.name.toLowerCase().includes(e.toLowerCase())) ||
+// 		object.recipeIngredient.find((ingredient) => ingredient.toLowerCase().includes(e.toLowerCase()));
+// 	}
+// 	return e.filter(filterRecipes);
+//   // render the filtered list
+// }
+// document.querySelector('#search').addEventListener('click', searchHandler);
