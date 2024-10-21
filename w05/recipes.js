@@ -328,14 +328,10 @@ function recipeTemplate(recipe) {
         </div>  `;
 }
 function tagsTemplate(recipe) {
-	// loop through the tags list and transform the strings to HTML
-	let tagshtml =`<div class="tags">
-                <span class="tag">${recipe.tags}</span>
-                <span class="tag">${recipe.tags}</span>
-                <span class="tag">${recipe.tags}</span>
-            </div>`
-
-	};
+	// loop through the tags list and transform the strings to HTML????
+	let tagshtml =`<span class="tag">${recipe.rating}</span>`;
+	tagshtml += tags.recipe;
+	}
 	
 
 function ratingTemplate(rating) {
@@ -343,21 +339,20 @@ function ratingTemplate(rating) {
 	let html = `<span
 	class="rating"
 	role="img"
-	aria-label="Rating: ${rating} out of 5 stars"
->`
+	aria-label="Rating: ${rating} out of 5 stars">`;
 // our ratings are always out of 5, so create a for loop from 1 to 5
 	const number = randomN(rating);
 		// check to see if the current index of the loop is less than our rating
 		// if so then output a filled star
 		if(number <6){
-			`<span aria-hidden="true" class="icon-star">⭐</span>`
+			html += `<span aria-hidden="true" class="icon-star">⭐</span>`
 		}
 		// else output an empty star
 		else{
-			`<span aria-hidden="true" class="icon-star-empty">☆</span>`
+			html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`
 		}
 	// after the loop, add the closing tag to our string
-	html += `</span>`
+	html += `</span>`;
 	// return the html string
 	return html
 }
@@ -367,7 +362,7 @@ console.log(recipeTemplate(recipe));
 
 function renderRecipes(recipeList) {
 	// get the element we will output the recipes into
-	const listElement = document.querySelector('block1');
+	const listElement = document.querySelector('.block1');
 	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
 	const html = recipeList.map(recipeTemplate);
 	// Set the HTML strings as the innerHTML of our output element.
@@ -382,3 +377,29 @@ function init() {
   renderRecipes([recipe]);
 }
 init();
+
+// filtering ??? 
+function filter(query) {
+	const filtered = recipes.filter(filterRecipes(query));
+	// sort by name
+	const sorted = filtered.sort(sortFunction);
+		return sorted;
+
+}
+function searchHandler(e) {
+	e.preventDefault();
+	// get the search input
+	const input = document.querySelector('#search').value.toLowerCase();
+  // convert the value in the input to lowercase
+
+  // use the filter function to filter our recipes
+	function filterRecipes(object){
+		(object.tags.find((tag) => tag.toLowerCase().includes(e.toLowerCase())) || 
+		object.description.toLowerCase().includes(e.toLowerCase()) || 
+		object.name.toLowerCase().includes(e.toLowerCase())) ||
+		object.recipeIngredient.find((ingredient) => ingredient.toLowerCase().includes(e.toLowerCase()));
+	}
+	return e.filter(filterRecipes);
+  // render the filtered list
+}
+document.querySelector('#search').addEventListener('click', searchHandler);
