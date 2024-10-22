@@ -371,23 +371,23 @@ function filterRecipes(query) {
             recipe.recipeIngredient.find(ingredient => ingredient.toLowerCase().includes(query))
         );
     });
-	console.log(filtered);
 	// sort by name	
-	const sorted = filtered.sort((a, b) => a.name - b.name);
-	console.log(sorted);
+	const sorted = filtered.sort((a, b) => a.name - b.name);	
 	return sorted;	
 }
 
-console.log(filterRecipes(recipe));
+// console.log(filterRecipes('apple'));
+
 function searchHandler(event) {
 	event.preventDefault();
 	// get the search input
 	const input = document.querySelector('#search').value.toLowerCase();
-  // convert the value in the input to lowercase
-  // use the filter function to filter our recipes
-  	const filteredRecipes = filterRecipes(input);
-  // render the filtered list
-  	return renderRecipes(filteredRecipes);
+	console.log('input', input);
+	// use the filter function to filter our recipes
+	const filteredRecipes = filterRecipes(input);
+	console.log('Filtered recipes:', filteredRecipes);
+	// render the filtered list
+	return renderRecipes(filteredRecipes);
 }
 
-document.querySelector('#search').addEventListener('click', searchHandler);
+document.querySelector('#searchbar').addEventListener('submit', searchHandler);
