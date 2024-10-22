@@ -294,21 +294,13 @@ console.log(passArray(recipes));
 
 function recipeTemplate(recipe) {
 	return `
-		<div class="block1">
-			<img class= 'recipe-img' src = '${recipe.image}'>
-            <div class="tags">
-                <span class="tag">Waffles</span>
-                <span class="tag">Sweet Potato</span>
-                <span class="tag">side</span>
-            </div>
+		<img class= 'recipe-img' src = '${recipe.image}'>
+		<div class ='block2'>
+				${tagsTemplate(recipe)}
             <h2 class="name">${recipe.name}</h2>
         
             <span class="rating" role="img" aria-label="Rating: ${recipe.rating} out of 5 stars">
-                <span aria-hidden="true" class="icon-star">⭐</span>
-                <span aria-hidden="true" class="icon-star">⭐</span>
-                <span aria-hidden="true" class="icon-star">⭐</span>
-                <span aria-hidden="true" class="icon-star-empty">⭐</span>
-                <span aria-hidden="true" class="icon-star-empty">☆</span>
+				${ratingTemplate(recipe)}
             </span>
             <div class="explanation">
                 <p class="description">${recipe.description}</p>
@@ -353,17 +345,11 @@ console.log(ratingTemplate(recipe));
 
 function renderRecipes(recipeList) {
 	// get the element we will output the recipes into
-	const listElement = document.querySelector('.block1');
+	const listElement = document.querySelector('main');
 	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-	const recipehtml1 = recipeList.map(recipeTemplate);
-	const taghtml1 = recipeList.map(tagsTemplate);
-	const ratinghtml1 = recipeList.map(ratingTemplate);
+	const recipehtml1 = recipeList.map(recipeTemplate).join('');
 	// Set the HTML strings as the innerHTML of our output element.
-
-	const combinedHtml = recipehtml1 + taghtml1 + ratinghtml1;
-
-	listElement.innerHTML = combinedHtml;
-	
+	return listElement.innerHTML = recipehtml1;	
 }
 // console.log(renderRecipes(recipes));
 
@@ -375,28 +361,33 @@ function init() {
 }
 init();
 
-// filtering ??? 
-function filter(query) {
-	const filtered = recipes.filter(filterRecipes(query));
+// filtering 
+function filterRecipes(query) {
+	const filtered = recipes.filter(recipe => {
+        return (
+            recipe.tags.find(tag => tag.toLowerCase().includes(query)) || 
+            recipe.description.toLowerCase().includes(query) || 
+            recipe.name.toLowerCase().includes(query) ||
+            recipe.recipeIngredient.find(ingredient => ingredient.toLowerCase().includes(query))
+        );
+    });
+	console.log(filtered);
 	// sort by name	
-	const sorted = filtered.sort(sortFunction);
-		return sorted;
-
+	const sorted = filtered.sort((a, b) => a.name - b.name);
+	console.log(sorted);
+	return sorted;	
 }
-function searchHandler(e) {
-	e.preventDefault();
+
+console.log(filterRecipes(recipe));
+function searchHandler(event) {
+	event.preventDefault();
 	// get the search input
 	const input = document.querySelector('#search').value.toLowerCase();
   // convert the value in the input to lowercase
-
   // use the filter function to filter our recipes
-	function filterRecipes(object){
-		(object.tags.find((tag) => tag.toLowerCase().includes(e.toLowerCase())) || 
-		object.description.toLowerCase().includes(e.toLowerCase()) || 
-		object.name.toLowerCase().includes(e.toLowerCase())) ||
-		object.recipeIngredient.find((ingredient) => ingredient.toLowerCase().includes(e.toLowerCase()));
-	}
-	return e.filter(filterRecipes);
+  	const filteredRecipes = filterRecipes(input);
   // render the filtered list
+  	return renderRecipes(filteredRecipes);
 }
+
 document.querySelector('#search').addEventListener('click', searchHandler);

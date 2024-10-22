@@ -82,11 +82,16 @@ footer img{
     main{
         display: flex; 
         flex-direction: row; 
+
     }
     .recipe-img{
         width: 50%;
+        align-items: flex-start;
     }
-    .block1{
+
+    .block2{
+        width: 50%;
+        align-items: flex-end;
         margin: 20px;
     }
     footer{
@@ -106,8 +111,11 @@ footer img{
     }
     .recipe-img{
         width: 50%;
+        align-items: flex-start;
     }
-    .block1{
+    .block2{
+        width: 50%;
+        align-items: flex-end;
         margin: 20px;
     }
     footer{
