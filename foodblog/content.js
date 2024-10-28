@@ -188,19 +188,6 @@ function viewHandler(event) {
 const mailImage = document.querySelector('#mailImage');
 mailImage.addEventListener('click', viewHandler);
 
-// random content- recipes
-// function randomN(num){
-// 	return Math.floor(Math.random()*num);
-// }
-// function passArray(list){
-// 	const listLength = list.length;
-// 	const randomNum = randomN(listLength);
-// 	return list[randomNum];
-// }
-
-// console.log(passArray(recipes));
-// console.log(passArray(tools));
-// console.log(passArray(stores));
 
 // alltemplete
 function allTemplate(allrow) {
@@ -260,64 +247,6 @@ function renderAll(allList) {
 }
 
 renderAll(all);
-
-// console.log(renderRecipes(recipes));
-// random content- tools
-// function toolTemplate(tool) {
-//       return `<img class="contentimg" src="${tool.image}">
-//                 <div class="block2">
-//                   <div class="tagitem">
-//                         ${tagsTemplate(tool)}
-//                   </div>
-//                     <h3 class="name">${tool.name}</h2>
-//                     <span class="rating" role="img" aria-label="Rating: ${tool.rating} out of 5 stars">
-//                         ${ratingTemplate(tool.rating)}
-                    
-//                     <p class = 'datePublished'>${tool.datePublished}</p>
-//                     <p class="description">${tool.description}</p>
-//                 </div>`;
-// }
-
-// console.log(ratingTemplate(recipes[1]));
-// const tool = passArray(tools);
-// function renderTools(toolList) {
-// 	const listElement = document.querySelector('#content2');
-// 	const toolhtml1 = toolList.map(toolTemplate).join('');
-// 	return listElement.innerHTML = toolhtml1;	
-// }
-
-// function storeTemplate(store) {
-//       return `<img class="contentimg" src="${store.image}">
-//                 <div class="block2">
-//                   <div class="tagitem">
-//                         ${tagsTemplate(store)}
-//                   </div>
-//                     <h3 class="name">${store.name}</h2>
-//                     <span class="rating" role="img" aria-label="Rating: ${store.rating} out of 5 stars">
-//                         ${ratingTemplate(store.rating)}
-//                     <p class = 'datePublished'>${store.datePublished}</p>
-//                     <p class="description">${store.description}</p>
-//                 </div>`;
-// }
-// console.log(ratingTemplate(recipes[1]));
-// const store = passArray(stores);
-// function renderStores(storeList) {
-// 	const listElement = document.querySelector('#content3');
-// 	const storehtml1 = storeList.map(storeTemplate).join('');
-// 	return listElement.innerHTML = storehtml1;	
-// }
-
-// function init() {
-//       const recipe = passArray(recipes)
-//       renderRecipes([recipe]);
-
-//       const tool = passArray(tools)
-//       renderTools([tool]);
-
-//       const store = passArray(stores)
-//       renderStores([store]);
-//     }
-// init();
 
 // search bar
 function filter(query) {
