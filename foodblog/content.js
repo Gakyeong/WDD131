@@ -204,7 +204,7 @@ function allTemplate(allrow) {
                     <p class="description">${allrow.description}</p>
                 </div>`;
 }
-// console.log(recipeTemplate(recipes[1]));
+
 function tagsTemplate(recipe) {
 	let tagshtml = '';
 	// loop through the tags list and transform the strings to HTML????
@@ -213,7 +213,7 @@ function tagsTemplate(recipe) {
 	});
 	return tagshtml
 }
-// console.log(tagsTemplate(recipes[1]));
+
 function ratingTemplate(rating) {
 	// begin building an html string using the ratings HTML written earlier as a model.
 	let html = '';
@@ -235,15 +235,16 @@ function ratingTemplate(rating) {
 	// return the html string
 	return html
 }
-// console.log(ratingTemplate(recipes[1]));
-// const recipe = passArray(recipes);
+
+
 function renderAll(allList) {
-	// get the element we will output the recipes into
+        // get the element we will output the recipes into
 	const listElement = document.querySelector('.maincontent');
 	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
 	const allhtml1 = allList.map(allTemplate).join('');
 	// Set the HTML strings as the innerHTML of our output element.
-	return listElement.innerHTML = allhtml1;	
+	return listElement.innerHTML = allhtml1;
+		
 }
 
 renderAll(all);
@@ -300,14 +301,16 @@ function descriptTemplate(recipe) {
                   </div>`;
 }
 function renderdescript(recipeList) {
-	// get the element we will output the recipes into
-	const listElement = document.querySelector('.recipesinfo');
-	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-	const recipehtml2 = recipeList.map(renderdescript).join('');
-	// Set the HTML strings as the innerHTML of our output element.
-	return listElement.innerHTML = recipehtml2;	
+    if(recipeList in recipes){
+        // get the element we will output the recipes into
+        const listElement = document.querySelector('.maincontent');
+        // use the recipeTemplate function to transform our recipe objects into recipe HTML strings
+        const recipehtml2 = recipeList.map(renderdescript).join('');
+        // Set the HTML strings as the innerHTML of our output element.
+        return listElement.innerHTML = recipehtml2;	
+    }
 }
-// renderdescript([recipe]);
+renderdescript(all);
 // sort
 
 

@@ -113,9 +113,9 @@ a:hover {
     font-family: var(--primary-font);
 }
 /* rating center?? */
-.rating{
-    /* width: 100%; */
-}
+/* .rating{
+
+} */
 .datePublished{
     font-family: var(--secondary-font);
     color: var(--text-dark);
