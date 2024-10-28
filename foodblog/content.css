@@ -87,13 +87,11 @@ a:hover {
     padding: 10px;
     
 }
-main img{
+.maincontent img{
     width: 100%;
     height: 50%;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom:10px;
 }
-.content{
+.maincontent{
     border: 2px solid var(--primary-color);
     border-radius: 10px;
     margin: 10px;
@@ -114,9 +112,9 @@ main img{
     text-align: center;
     font-family: var(--primary-font);
 }
+/* rating center?? */
 .rating{
-    display: flex; 
-    justify-content: center; 
+    /* width: 100%; */
 }
 .datePublished{
     font-family: var(--secondary-font);
@@ -128,6 +126,14 @@ main img{
     color: var(--text-dark);
     text-align: center;
 }
+.ingredient li{
+    list-style-type: square;
+    list-style-position: inside;
+}
+.instructions li{
+    list-style-position: inside;
+}
+
 /* footer */
 footer{
     background-color: var(--secondary-color);
@@ -215,7 +221,7 @@ footer p{
 
 /* media query: 600 */
 @media screen and (min-width: 600px){
-    .content{
+    .maincontent{
         display: flex;
         flex-direction: row;
         border: 2px solid var(--primary-color);
@@ -223,7 +229,7 @@ footer p{
         margin: 10px;
         padding: 10px;
     }
-    .content img{
+    .maincontent img{
         width: 50%;
         align-items: flex-start;
         border-right: 2px solid var(--primary-color);
@@ -254,14 +260,14 @@ footer p{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
     }
-    .content img{
+    .maincontent img{
         width: 100%;
         border-bottom: 2px solid var(--primary-color);
         padding-bottom: 10px;
         border-right: none;
         padding-right: 0;
     }
-    .content{ 
+    .maincontent{ 
         display: flex;
         flex-direction: column;
     }
