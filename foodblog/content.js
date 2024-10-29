@@ -144,47 +144,12 @@ const stores = [
             address : '163 W Main St ste 103, Rexburg, ID 83440'
       }
 ]
+
 const all = [...recipes, ...tools, ...stores]
 
 // subscription
-function viewerTemplate() {
-      return `<div class="viewer">
-            <div class='back'>
-                  <button class="close-viewer">X</button>
-                  <div class= 'form1'>
-                        <img class='healthy' src="./images/healthyfood.jpg" alt="healthyfoodimg">
-                  
-                        <div class = 'form2'>
-                              <form id ='subscription'>
-                              <label for="email"><b>Email</b></label>
-                              <input id ='email' type="email" placeholder="Enter Email" name="email" required>
-                              <button type="submit" class="registerbtn">Register</button>
-                              </form>
-                        </div>
-                  </div>
-            </div>
-        </div>`;
-    }
+import { viewerTemplate, closeviewer, viewHandler } from './blog.js';
 
-function closeviewer() {
-      const viewer = document.querySelector('.viewer');
-      viewer.remove();
-  }
-
-function viewHandler(event) {
-      const element = event.target;
-      console.log(element);
-      if (element.tagName === 'IMG') {
-      const htmltoinsert = viewerTemplate();
-      console.log(htmltoinsert);
-
-            // insert the viewerTemplate into the top of the body element
-            document.body.insertAdjacentHTML("afterbegin", htmltoinsert);
-            // add a listener to the close button (X) that calls a function called closeViewer when clicked
-      const removeModal = document.querySelector('.close-viewer');
-      removeModal.addEventListener('click', closeviewer);
-      }
-}
 const mailImage = document.querySelector('#mailImage');
 mailImage.addEventListener('click', viewHandler);
 
@@ -205,36 +170,7 @@ function allTemplate(allrow) {
                 </div>`;
 }
 
-function tagsTemplate(recipe) {
-	let tagshtml = '';
-	// loop through the tags list and transform the strings to HTML????
-	recipe.tags.forEach(tag => {
-		tagshtml += `<span class="tag">${tag}</span>`
-	});
-	return tagshtml
-}
-
-function ratingTemplate(rating) {
-	// begin building an html string using the ratings HTML written earlier as a model.
-	let html = '';
-      // our ratings are always out of 5, so create a for loop from 1 to 5
-	// const number = randomN(rating);
-		// check to see if the current index of the loop is less than our rating
-		// if so then output a filled star
-		for (let i = 1; i <= 5; i++){
-			if(i <= rating){
-				html += `<span aria-hidden="true" class="icon-star">⭐</span>`
-			}
-			// else output an empty star
-			else{
-				html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`
-			}
-		}
-	// after the loop, add the closing tag to our string
-	html += `</span>`;
-	// return the html string
-	return html
-}
+import {tagsTemplate, ratingTemplate} from './blog.js';
 
 
 function renderAll(allList) {
@@ -243,74 +179,46 @@ function renderAll(allList) {
 	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
 	const allhtml1 = allList.map(allTemplate).join('');
 	// Set the HTML strings as the innerHTML of our output element.
-	return listElement.innerHTML = allhtml1;
-		
+	return listElement.innerHTML = allhtml1;	
 }
 
 renderAll(all);
 
 // search bar
-function filter(query) {
-	const filteredRecipes = recipes.filter(recipe => {
-        return recipe.tags.find(tag => tag.toLowerCase().includes(query))
-      });
-      const filteredTools = tools.filter(tool => {
-      return tool.tags.find(tag => tag.toLowerCase().includes(query))
-      });
-      const filteredStores = stores.filter(store => {
-            return store.tags.find(tag => tag.toLowerCase().includes(query))
-      });
-// sort by name	
-      const sortedrecipes = filteredRecipes.sort((a, b) => a.name - b.name);
-      const sortedtools = filteredTools.sort((a, b) => a.name - b.name);
-      const sortedstores = filteredStores.sort((a, b) => a.name - b.name);
-      const sortedcombine = {sortedrecipes, sortedtools , sortedstores};
-      // const sorted = sortedcombine.sort((a, b) => a.name - b.name);
 
-      return sortedcombine;	
-      }
-// console.log(filter());
-function searchHandler(event) {
-	event.preventDefault();
-	// get the search input
-	const input = document.querySelector('#search').value.toLowerCase();
-      const fr = filter(input);
-      renderRecipes(fr.sortedrecipes);
-      renderTools(fr.sortedtools);
-      renderStores(fr.sortedstores);
-}
+import {filter, searchHandler} from './blog.js';
 
 document.querySelector('#searchbar').addEventListener('submit', searchHandler);
 
 // second pages
 // add description
-function descriptTemplate(recipe) {
-      return `    <div class="recipesinfo">
-                        <div class ='ingredient'>
-                            <h4 class="title">Ingredient</h4>
-                            <ul>
-                              ${recipe.recipeIngredient}
-                            </ul>
-                        </div>
-                        <div class = 'instructions'>
-                            <h4 class="title">Instructions</h4>
-                            <ol>
-                              ${recipe.recipeInstructions}
-                            </ol>
-                        </div>
-                  </div>`;
-}
-function renderdescript(recipeList) {
-    if(recipeList in recipes){
-        // get the element we will output the recipes into
-        const listElement = document.querySelector('.maincontent');
-        // use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-        const recipehtml2 = recipeList.map(renderdescript).join('');
-        // Set the HTML strings as the innerHTML of our output element.
-        return listElement.innerHTML = recipehtml2;	
-    }
-}
-renderdescript(all);
+// function descriptTemplate(recipe) {
+//       return `    <div class="recipesinfo">
+//                         <div class ='ingredient'>
+//                             <h4 class="title">Ingredient</h4>
+//                             <ul>
+//                               ${recipe.recipeIngredient}
+//                             </ul>
+//                         </div>
+//                         <div class = 'instructions'>
+//                             <h4 class="title">Instructions</h4>
+//                             <ol>
+//                               ${recipe.recipeInstructions}
+//                             </ol>
+//                         </div>
+//                   </div>`;
+// }
+// function renderdescript(recipeList) {
+//     if(recipeList in recipes){
+//         // get the element we will output the recipes into
+//         const listElement = document.querySelector('.maincontent');
+//         // use the recipeTemplate function to transform our recipe objects into recipe HTML strings
+//         const recipehtml2 = recipeList.map(renderdescript).join('');
+//         // Set the HTML strings as the innerHTML of our output element.
+//         return listElement.innerHTML = recipehtml2;	
+//     }
+// }
+// renderdescript(all);
 // sort
 
 

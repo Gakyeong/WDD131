@@ -347,33 +347,4 @@ function searchHandler(event) {
 
 document.querySelector('#searchbar').addEventListener('submit', searchHandler);
 
-// second pages
-// add description
-function descriptTemplate(recipe) {
-      return `    <div class="recipesinfo">
-                        <div class ='ingredient'>
-                            <h4 class="title">Ingredient</h4>
-                            <ul>
-                              ${recipe.recipeIngredient}
-                            </ul>
-                        </div>
-                        <div class = 'instructions'>
-                            <h4 class="title">Instructions</h4>
-                            <ol>
-                              ${recipe.recipeInstructions}
-                            </ol>
-                        </div>
-                  </div>`;
-}
-function renderdescript(recipeList) {
-	// get the element we will output the recipes into
-	const listElement = document.querySelector('.recipesinfo');
-	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-	const recipehtml2 = recipeList.map(renderdescript).join('');
-	// Set the HTML strings as the innerHTML of our output element.
-	return listElement.innerHTML = recipehtml2;	
-}
-renderdescript([recipe]);
-// sort
-const all = [...recipes, ...tools, ...stores]
 
