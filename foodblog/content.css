@@ -228,6 +228,7 @@ footer p{
     }
     .block1 img{
         width: 50%;
+        height: 400px;
         /* align-items: flex-start; */
 
     }
@@ -268,6 +269,7 @@ footer p{
     }
     .block1 img{
         width: 50%;
+        height: 500px;
         padding-bottom: 10px;
         border-right: none;
         padding-right: 10px;

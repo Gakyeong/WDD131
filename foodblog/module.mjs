@@ -195,35 +195,35 @@ const mailImage = document.querySelector('#mailImage');
 mailImage.addEventListener('click', viewHandler);
 
 // random content- recipes
-function randomN(num){
-	return Math.floor(Math.random()*num);
-}
-function passArray(list){
-	const listLength = list.length;
-	const randomNum = randomN(listLength);
-	return list[randomNum];
-}
+// function randomN(num){
+// 	return Math.floor(Math.random()*num);
+// }
+// function passArray(list){
+// 	const listLength = list.length;
+// 	const randomNum = randomN(listLength);
+// 	return list[randomNum];
+// }
 
 // console.log(passArray(recipes));
 // console.log(passArray(tools));
 // console.log(passArray(stores));
 
-function recipeTemplate(recipe) {
-  return `<img class="contentimg" src="${recipe.image}">
-                <div class="block2">
-                  <div class="tagitem">
-                        ${tagsTemplate(recipe)}
-                  </div>
-                    <h3 class="name">${recipe.name}</h3>
-                    <span class="rating" role="img" aria-label="Rating: ${
-                      recipe.rating
-                    } out of 5 stars">
-                        ${ratingTemplate(recipe.rating)}
-                    <p class = 'datePublished'>${recipe.datePublished}</p>
+// function recipeTemplate(recipe) {
+//   return `<img class="contentimg" src="${recipe.image}">
+//                 <div class="block2">
+//                   <div class="tagitem">
+//                         ${tagsTemplate(recipe)}
+//                   </div>
+//                     <h3 class="name">${recipe.name}</h3>
+//                     <span class="rating" role="img" aria-label="Rating: ${
+//                       recipe.rating
+//                     } out of 5 stars">
+//                         ${ratingTemplate(recipe.rating)}
+//                     <p class = 'datePublished'>${recipe.datePublished}</p>
                     
-                    <p class="description">${recipe.description}</p>
-                </div>`;
-}
+//                     <p class="description">${recipe.description}</p>
+//                 </div>`;
+// }
 // console.log(recipeTemplate(recipes[1]));
 function tagsTemplate(recipe) {
   let tagshtml = "";
@@ -257,63 +257,63 @@ function ratingTemplate(rating) {
 }
 // console.log(ratingTemplate(recipes[1]));
 const recipe = passArray(recipes);
-function renderRecipes(recipeList) {
-  // get the element we will output the recipes into
-  const listElement = document.querySelector("#content1");
-  // use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-  const recipehtml1 = recipeList.map(recipeTemplate).join("");
-  // Set the HTML strings as the innerHTML of our output element.
-  return (listElement.innerHTML = recipehtml1);
-}
+// function renderRecipes(recipeList) {
+//   // get the element we will output the recipes into
+//   const listElement = document.querySelector("#content1");
+//   // use the recipeTemplate function to transform our recipe objects into recipe HTML strings
+//   const recipehtml1 = recipeList.map(recipeTemplate).join("");
+//   // Set the HTML strings as the innerHTML of our output element.
+//   return (listElement.innerHTML = recipehtml1);
+// }
 // console.log(renderRecipes(recipes));
 // random content- tools
-function toolTemplate(tool) {
-  return `<img class="contentimg" src="${tool.image}">
-                <div class="block2">
-                  <div class="tagitem">
-                        ${tagsTemplate(tool)}
-                  </div>
-                    <h3 class="name">${tool.name}</h3>
-                    <span class="rating" role="img" aria-label="Rating: ${
-                      tool.rating
-                    } out of 5 stars">
-                        ${ratingTemplate(tool.rating)}
+// function toolTemplate(tool) {
+//   return `<img class="contentimg" src="${tool.image}">
+//                 <div class="block2">
+//                   <div class="tagitem">
+//                         ${tagsTemplate(tool)}
+//                   </div>
+//                     <h3 class="name">${tool.name}</h3>
+//                     <span class="rating" role="img" aria-label="Rating: ${
+//                       tool.rating
+//                     } out of 5 stars">
+//                         ${ratingTemplate(tool.rating)}
                     
-                    <p class = 'datePublished'>${tool.datePublished}</p>
-                    <p class="description">${tool.description}</p>
-                </div>`;
-}
+//                     <p class = 'datePublished'>${tool.datePublished}</p>
+//                     <p class="description">${tool.description}</p>
+//                 </div>`;
+// }
 
 // console.log(ratingTemplate(recipes[1]));
-const tool = passArray(tools);
-function renderTools(toolList) {
-  const listElement = document.querySelector("#content2");
-  const toolhtml1 = toolList.map(toolTemplate).join("");
-  return (listElement.innerHTML = toolhtml1);
-}
+// const tool = passArray(tools);
+// function renderTools(toolList) {
+//   const listElement = document.querySelector("#content2");
+//   const toolhtml1 = toolList.map(toolTemplate).join("");
+//   return (listElement.innerHTML = toolhtml1);
+// }
 
-function storeTemplate(store) {
-  return `<img class="contentimg" src="${store.image}">
-                <div class="block2">
-                  <div class="tagitem">
-                        ${tagsTemplate(store)}
-                  </div>
-                    <h3 class="name">${store.name}</h3>
-                    <span class="rating" role="img" aria-label="Rating: ${
-                      store.rating
-                    } out of 5 stars">
-                        ${ratingTemplate(store.rating)}
-                    <p class = 'datePublished'>${store.datePublished}</p>
-                    <p class="description">${store.description}</p>
-                </div>`;
-}
+// function storeTemplate(store) {
+//   return `<img class="contentimg" src="${store.image}">
+//                 <div class="block2">
+//                   <div class="tagitem">
+//                         ${tagsTemplate(store)}
+//                   </div>
+//                     <h3 class="name">${store.name}</h3>
+//                     <span class="rating" role="img" aria-label="Rating: ${
+//                       store.rating
+//                     } out of 5 stars">
+//                         ${ratingTemplate(store.rating)}
+//                     <p class = 'datePublished'>${store.datePublished}</p>
+//                     <p class="description">${store.description}</p>
+//                 </div>`;
+// }
 // console.log(ratingTemplate(recipes[1]));
-const store = passArray(stores);
-function renderStores(storeList) {
-  const listElement = document.querySelector("#content3");
-  const storehtml1 = storeList.map(storeTemplate).join("");
-  return (listElement.innerHTML = storehtml1);
-}
+// const store = passArray(stores);
+// function renderStores(storeList) {
+//   const listElement = document.querySelector("#content3");
+//   const storehtml1 = storeList.map(storeTemplate).join("");
+//   return (listElement.innerHTML = storehtml1);
+// }
 
 // function init() {
 //       const recipe = passArray(recipes)
@@ -327,51 +327,10 @@ function renderStores(storeList) {
 //     }
 // init();
 
-// search bar
-function filter(query) {
-  const filteredRecipes = recipes.filter((recipe) => {
-    return recipe.tags.find((tag) => tag.toLowerCase().includes(query));
-  });
-  const filteredTools = tools.filter((tool) => {
-    return tool.tags.find((tag) => tag.toLowerCase().includes(query));
-  });
-  const filteredStores = stores.filter((store) => {
-    return store.tags.find((tag) => tag.toLowerCase().includes(query));
-  });
-
-  // sort by name
-  const sortedrecipes = filteredRecipes.sort((a, b) => a.name - b.name);
-  const sortedtools = filteredTools.sort((a, b) => a.name - b.name);
-  const sortedstores = filteredStores.sort((a, b) => a.name - b.name);
-  const sortedcombine = { sortedrecipes, sortedtools, sortedstores };
-  // const sorted = sortedcombine.sort((a, b) => a.name - b.name);
-
-  return sortedcombine;
-}
-// console.log(filter());
-function searchHandler(event) {
-  event.preventDefault();
-  // get the search input
-  const input = document.querySelector("#search").value.toLowerCase();
-  const fr = filter(input);
-  renderRecipes(fr.sortedrecipes);
-  renderTools(fr.sortedtools);
-  renderStores(fr.sortedstores);
-}
-
-document.querySelector('#searchbar').addEventListener('submit', searchHandler);
-
 export {
   viewHandler,
   tagsTemplate,
   ratingTemplate,
-  searchHandler,
-  randomN,
-  passArray,
-  renderRecipes,
-  renderTools,
-  renderStores,
-  filter,
   recipes,
   tools,
   stores

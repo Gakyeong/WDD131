@@ -1,8 +1,15 @@
-import {tagsTemplate, ratingTemplate} from './module.mjs';
-import {viewHandler } from './module.mjs';
-import {searchHandler, passArray, randomN} from './module.mjs';
+import {tagsTemplate, ratingTemplate,viewHandler} from './module.mjs';
+// import {searchHandler, passArray, randomN} from './module.mjs';
 import {recipes, tools, stores } from './module.mjs';
 
+function randomN(num){
+	return Math.floor(Math.random()*num);
+}
+function passArray(list){
+	const listLength = list.length;
+	const randomNum = randomN(listLength);
+	return list[randomNum];
+}
 function recipeTemplate(recipe) {
       return `<img class="contentimg" src="${recipe.image}">
                 <div class="block2">
@@ -85,4 +92,37 @@ function init() {
     }
 init();
 
- 
+// search bar
+function filter(query) {
+  const filteredRecipes = recipes.filter((recipe) => {
+    return recipe.tags.find((tag) => tag.toLowerCase().includes(query));
+  });
+  const filteredTools = tools.filter((tool) => {
+    return tool.tags.find((tag) => tag.toLowerCase().includes(query));
+  });
+  const filteredStores = stores.filter((store) => {
+    return store.tags.find((tag) => tag.toLowerCase().includes(query));
+  });
+
+  // sort by name
+  const sortedrecipes = filteredRecipes.sort((a, b) => a.name - b.name);
+  const sortedtools = filteredTools.sort((a, b) => a.name - b.name);
+  const sortedstores = filteredStores.sort((a, b) => a.name - b.name);
+  const sortedcombine = { sortedrecipes, sortedtools, sortedstores };
+  // const sorted = sortedcombine.sort((a, b) => a.name - b.name);
+
+  return sortedcombine;
+}
+// console.log(filter());
+function searchHandler(event) {
+  event.preventDefault();
+  // get the search input
+  const input = document.querySelector("#search").value.toLowerCase();
+  const fr = filter(input);
+  renderRecipes(fr.sortedrecipes);
+  renderTools(fr.sortedtools);
+  renderStores(fr.sortedstores);
+}
+
+document.querySelector('#searchbar').addEventListener('submit', searchHandler);
+
