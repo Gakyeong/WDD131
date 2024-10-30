@@ -1,6 +1,6 @@
-import {tagsTemplate, ratingTemplate} from "./module.mjs";
+import {tagsTemplate, ratingTemplate, filter } from "./module.mjs";
 import {recipes, stores, tools } from "./module.mjs";
-import {viewHandler, searchHandler, passArray, randomN, filter} from "./module.mjs";
+// import {viewHandler, searchHandler, passArray, randomN, renderRecipes, renderStores, renderTools} from "./module.mjs";
 
 const all = [...recipes, ...tools, ...stores];
 
@@ -39,3 +39,19 @@ function sortByDate(data) {
 
 const sortedall = sortByDate(all);
 renderAll(sortedall);
+
+// sort by filter
+function filter2(query) {
+  const filteredAll = all.filter2((allrow) => {
+    return allrow.tags.find((tag) => tag.toLowerCase().incudes(query));
+  });
+  const sortedAll = filteredAll.sort((a,b) => a.name- b.name);
+  return sortedAll
+}
+
+function searchHandler2(event){
+  event.preventDefault();
+  const input= document.querySelector('#search').ariaValueMax.toLowerCase();
+  const fr = filter2(input);
+  renderAll(fr.sortedAll);
+}
