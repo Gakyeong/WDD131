@@ -1,5 +1,4 @@
 import {tagsTemplate, ratingTemplate,viewHandler} from './module.mjs';
-// import {searchHandler, passArray, randomN} from './module.mjs';
 import {recipes, tools, stores } from './module.mjs';
 
 function randomN(num){
@@ -11,7 +10,7 @@ function passArray(list){
 	return list[randomNum];
 }
 function recipeTemplate(recipe) {
-      return `<img class="contentimg" src="${recipe.image}">
+      return `<img class="contentimg" src="${recipe.image}" loading="lazy">
                 <div class="block2">
                   <div class="tagitem">
                         ${tagsTemplate(recipe)}
@@ -27,17 +26,14 @@ function recipeTemplate(recipe) {
 
 const recipe = passArray(recipes);
 function renderRecipes(recipeList) {
-	// get the element we will output the recipes into
 	const listElement = document.querySelector('#content1');
-	// use the recipeTemplate function to transform our recipe objects into recipe HTML strings
 	const recipehtml1 = recipeList.map(recipeTemplate).join('');
-	// Set the HTML strings as the innerHTML of our output element.
 	return listElement.innerHTML = recipehtml1;	
 }
 
 // random content- tools
 function toolTemplate(tool) {
-      return `<img class="contentimg" src="${tool.image}">
+      return `<img class="contentimg" src="${tool.image}" loading="lazy">
                 <div class="block2">
                   <div class="tagitem">
                         ${tagsTemplate(tool)}
@@ -51,7 +47,6 @@ function toolTemplate(tool) {
                 </div>`;
 }
 
-// console.log(ratingTemplate(recipes[1]));
 const tool = passArray(tools);
 function renderTools(toolList) {
 	const listElement = document.querySelector('#content2');
@@ -60,7 +55,7 @@ function renderTools(toolList) {
 }
 
 function storeTemplate(store) {
-      return `<img class="contentimg" src="${store.image}">
+      return `<img class="contentimg" src="${store.image}" loading="lazy">
                 <div class="block2">
                   <div class="tagitem">
                         ${tagsTemplate(store)}
@@ -72,7 +67,7 @@ function storeTemplate(store) {
                     <p class="description">${store.description}</p>
                 </div>`;
 }
-// console.log(ratingTemplate(recipes[1]));
+
 const store = passArray(stores);
 function renderStores(storeList) {
 	const listElement = document.querySelector('#content3');
@@ -109,14 +104,13 @@ function filter(query) {
   const sortedtools = filteredTools.sort((a, b) => a.name - b.name);
   const sortedstores = filteredStores.sort((a, b) => a.name - b.name);
   const sortedcombine = { sortedrecipes, sortedtools, sortedstores };
-  // const sorted = sortedcombine.sort((a, b) => a.name - b.name);
 
   return sortedcombine;
 }
-// console.log(filter());
+
 function searchHandler(event) {
   event.preventDefault();
-  // get the search input
+
   const input = document.querySelector("#search").value.toLowerCase();
   const fr = filter(input);
   renderRecipes(fr.sortedrecipes);

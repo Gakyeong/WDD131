@@ -37,7 +37,7 @@ const recipes = [
     tags: ["Appetizer", "Snack"],
     description:
       "Crispy Korean fried chicken glazed in a sticky, sweet, and spicy sauce. This dakgangjeong recipe uses bite sized boneless chicken pieces, so it cooks up fast for a quick snack!",
-    image: "./images/fried_chicken.jpg",
+    image: "./images/fried_chicken.png",
     recipeIngredient: [
       "1 pound boneless skinless chicken thigh and/or breast",
       "1/2 cup milk optional",
@@ -70,7 +70,7 @@ const recipes = [
     tags: ["Easy", "Main", "Spicy"],
     description:
       "This simple, simple dish is super, super tasty. It’s just a few ingredients, but it’s a dish much loved by Koreans and a staple of our everyday lives.",
-    image: "./images/kimchi friedrice.jpg",
+    image: "./images/kimchi friedrice.png",
     recipeIngredient: [
       "3 bowls steamed rice (3 cups)",
       "1 cup chopped kimchi (should be aged, well-fermented and sour)",
@@ -101,7 +101,7 @@ const tools = [
     datePublished: "2024 /09/ 23",
     rating: 3,
     name: "VAKUEN",
-    image: "./images/utensilsimg.jpg",
+    image: "./images/utensilsimg.png",
     description:
       "Premium Airtight Food Storage Containers & Vacuum Sealer Machine Starter Set, 4-piece Container with Sealer, 100% Leak Proof,Keep food fresh up to 5 times longer than non-vacuum strorage",
     tags: ["Leak Proof", "Container"],
@@ -111,7 +111,7 @@ const tools = [
     datePublished: "2024 /07/ 13",
     rating: 5,
     name: "FoodSaver",
-    image: "./images/foodsaver.jpg",
+    image: "./images/foodsaver.png",
     description:
       "FoodSaver PowerVac Compact Vacuum Sealing Machine, Stainless Steel & Black, Vertical Storage, VS0150 | Preserves freshness, reduces bag waste, for both dry and wet food",
     tags: ["Freshness", "Space-efficient"],
@@ -121,7 +121,7 @@ const tools = [
     datePublished: "2022/04/08",
     rating: 4,
     name: "NiNJA NB751",
-    image: "./images/ninja.jpg",
+    image: "./images/ninja.png",
     description:
       "Ninja BN751 Professional Plus DUO Blender, 1400 Peak Watts, 3 Auto-IQ Programs for Smoothies, Frozen Drinks & Nutrient Extractions, 72-oz. Total Crushing Pitcher & (2) 24 oz. To-Go Cups, Black",
     tags: ["Easy to clean", "Power"],
@@ -134,7 +134,7 @@ const stores = [
     datePublished: "2023/05/14",
     rating: 4,
     name: "KOU",
-    image: "./images/restimg.webp",
+    image: "./images/bbq.png",
     description: "Choose the ALL-YOU-CAN-EAT menu or Individual menu.",
     tags: ["Korean BBQ", "Orem, Utah"],
     address: "69 State St, Orem, UT 84058",
@@ -158,7 +158,7 @@ function viewerTemplate() {
             <div class='back'>
                   <button class="close-viewer">X</button>
                   <div class= 'form1'>
-                        <img class='healthy' src="./images/healthyfood.jpg" alt="healthyfoodimg">
+                        <img class='healthy' src="./images/healthyfood.png" alt="healthyfoodimg" loading="lazy">
                   
                         <div class = 'form2'>
                               <form id ='subscription'>
@@ -184,9 +184,7 @@ function viewHandler(event) {
     const htmltoinsert = viewerTemplate();
     console.log(htmltoinsert);
 
-    // insert the viewerTemplate into the top of the body element
     document.body.insertAdjacentHTML("afterbegin", htmltoinsert);
-    // add a listener to the close button (X) that calls a function called closeViewer when clicked
     const removeModal = document.querySelector(".close-viewer");
     removeModal.addEventListener("click", closeviewer);
   }
@@ -194,138 +192,29 @@ function viewHandler(event) {
 const mailImage = document.querySelector('#mailImage');
 mailImage.addEventListener('click', viewHandler);
 
-// random content- recipes
-// function randomN(num){
-// 	return Math.floor(Math.random()*num);
-// }
-// function passArray(list){
-// 	const listLength = list.length;
-// 	const randomNum = randomN(listLength);
-// 	return list[randomNum];
-// }
-
-// console.log(passArray(recipes));
-// console.log(passArray(tools));
-// console.log(passArray(stores));
-
-// function recipeTemplate(recipe) {
-//   return `<img class="contentimg" src="${recipe.image}">
-//                 <div class="block2">
-//                   <div class="tagitem">
-//                         ${tagsTemplate(recipe)}
-//                   </div>
-//                     <h3 class="name">${recipe.name}</h3>
-//                     <span class="rating" role="img" aria-label="Rating: ${
-//                       recipe.rating
-//                     } out of 5 stars">
-//                         ${ratingTemplate(recipe.rating)}
-//                     <p class = 'datePublished'>${recipe.datePublished}</p>
-                    
-//                     <p class="description">${recipe.description}</p>
-//                 </div>`;
-// }
-// console.log(recipeTemplate(recipes[1]));
 function tagsTemplate(recipe) {
   let tagshtml = "";
-  // loop through the tags list and transform the strings to HTML????
   recipe.tags.forEach((tag) => {
     tagshtml += `<span class="tag">${tag}</span>`;
   });
   return tagshtml;
 }
-// console.log(tagsTemplate(recipes[1]));
+
 function ratingTemplate(rating) {
-  // begin building an html string using the ratings HTML written earlier as a model.
+ 
   let html = "";
-  // our ratings are always out of 5, so create a for loop from 1 to 5
-  // const number = randomN(rating);
-  // check to see if the current index of the loop is less than our rating
-  // if so then output a filled star
+
   for (let i = 1; i <= 5; i++) {
     if (i <= rating) {
       html += `<span aria-hidden="true" class="icon-star">⭐</span>`;
     }
-    // else output an empty star
     else {
       html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`;
     }
   }
-  // after the loop, add the closing tag to our string
   html += `</span>`;
-  // return the html string
   return html;
 }
-// console.log(ratingTemplate(recipes[1]));
-const recipe = passArray(recipes);
-// function renderRecipes(recipeList) {
-//   // get the element we will output the recipes into
-//   const listElement = document.querySelector("#content1");
-//   // use the recipeTemplate function to transform our recipe objects into recipe HTML strings
-//   const recipehtml1 = recipeList.map(recipeTemplate).join("");
-//   // Set the HTML strings as the innerHTML of our output element.
-//   return (listElement.innerHTML = recipehtml1);
-// }
-// console.log(renderRecipes(recipes));
-// random content- tools
-// function toolTemplate(tool) {
-//   return `<img class="contentimg" src="${tool.image}">
-//                 <div class="block2">
-//                   <div class="tagitem">
-//                         ${tagsTemplate(tool)}
-//                   </div>
-//                     <h3 class="name">${tool.name}</h3>
-//                     <span class="rating" role="img" aria-label="Rating: ${
-//                       tool.rating
-//                     } out of 5 stars">
-//                         ${ratingTemplate(tool.rating)}
-                    
-//                     <p class = 'datePublished'>${tool.datePublished}</p>
-//                     <p class="description">${tool.description}</p>
-//                 </div>`;
-// }
-
-// console.log(ratingTemplate(recipes[1]));
-// const tool = passArray(tools);
-// function renderTools(toolList) {
-//   const listElement = document.querySelector("#content2");
-//   const toolhtml1 = toolList.map(toolTemplate).join("");
-//   return (listElement.innerHTML = toolhtml1);
-// }
-
-// function storeTemplate(store) {
-//   return `<img class="contentimg" src="${store.image}">
-//                 <div class="block2">
-//                   <div class="tagitem">
-//                         ${tagsTemplate(store)}
-//                   </div>
-//                     <h3 class="name">${store.name}</h3>
-//                     <span class="rating" role="img" aria-label="Rating: ${
-//                       store.rating
-//                     } out of 5 stars">
-//                         ${ratingTemplate(store.rating)}
-//                     <p class = 'datePublished'>${store.datePublished}</p>
-//                     <p class="description">${store.description}</p>
-//                 </div>`;
-// }
-// console.log(ratingTemplate(recipes[1]));
-// const store = passArray(stores);
-// function renderStores(storeList) {
-//   const listElement = document.querySelector("#content3");
-//   const storehtml1 = storeList.map(storeTemplate).join("");
-//   return (listElement.innerHTML = storehtml1);
-// }
-
-// function init() {
-//       const recipe = passArray(recipes)
-//       renderRecipes([recipe]);
-
-//       const tool = passArray(tools)
-//       renderTools([tool]);
-
-//       const store = passArray(stores)
-//       renderStores([store]);
-//     }
-// init();
 
 export {
   viewHandler,

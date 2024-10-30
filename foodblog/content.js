@@ -1,6 +1,5 @@
 import {tagsTemplate, ratingTemplate,viewHandler } from "./module.mjs";
 import {recipes, stores, tools } from "./module.mjs";
-// import {filter, viewHandler, searchHandler, passArray, randomN} from "./module.mjs";
 
 const all = [...recipes, ...tools, ...stores];
 
@@ -8,7 +7,7 @@ const all = [...recipes, ...tools, ...stores];
 function allTemplate(allrow) {
   return `
       <div class= 'block1'>
-        <img class="contentimg" src="${allrow.image}">
+        <img class="contentimg" src="${allrow.image}" loading="lazy">
         <div class="block2">
           <div class="tagitem">
                 ${tagsTemplate(allrow)}
@@ -25,11 +24,9 @@ function allTemplate(allrow) {
 }
 
 function renderAll(allList) {
-  // get the element we will output the recipes into
   const listElement = document.querySelector(".maincontent");
-  // use the recipeTemplate function to transform our recipe objects into recipe HTML strings
   const allhtml1 = allList.map(allTemplate).join("");
-  // Set the HTML strings as the innerHTML of our output element.
+  
   return (listElement.innerHTML = allhtml1);
 }
 
@@ -41,8 +38,8 @@ const sortedall = sortByDate(all);
 renderAll(sortedall);
 
 // sort by filter
-function filter2(query) {
-  const filteredAll = all.filter2((allrow) => {
+function filterDate(query) {
+  const filteredAll = all.filter((allrow) => {
     return allrow.tags.find((tag) => tag.toLowerCase().includes(query));
   });
   const sortedAll = filteredAll.sort((a,b) => new Date(b.datePublished) - new Date(a.datePublished));
@@ -51,9 +48,13 @@ function filter2(query) {
 
 function searchHandler2(event){
   event.preventDefault();
-  const input= document.querySelector('#search').value.toLowerCase();
-  const fr = filter2(input);
-  renderAll(fr);
+  const input = document.querySelector('#search').value.toLowerCase();
+  if (!input) {
+    renderAll(sortedall);
+  } else {
+    const filteredResults = filterDate(input);
+    renderAll(filteredResults);
+  }
 }
 
 document.querySelector('#searchbar').addEventListener('submit', searchHandler2)
